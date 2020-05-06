@@ -12,7 +12,6 @@ void loop() {
   float tlak = bmp.readPressure() / 100;
   float nadmorska_vyska = bmp.readAltitude(1013.25);
   float tlak_hladina_mora = tlak / pow(1 - ((0.0065 * nadmorska_vyska) / (teplota + (0.0065 * nadmorska_vyska) + 273.15)), 5.257);
-  float tlak_hladina_mora2 = tlak / pow(1.0 - nadmorska_vyska / 44330.0, 5.255);
   float tlak_hladina_mora3 = tlak / pow(1.0 - 0.0065 * nadmorska_vyska / (teplota + 273.15), 5.255);
   Serial.print("Teplota = ");
   Serial.print(teplota);
@@ -27,11 +26,7 @@ void loop() {
   Serial.print(tlak_hladina_mora);
   Serial.println(" hPa");
 
-  Serial.print("Relativny tlak (upraveny Bosch vzorec 2 - najviac odpoveda skutocnosti z merani) = ");
-  Serial.print(tlak_hladina_mora2);
-  Serial.println(" hPa");
-
-  Serial.print("Relativny tlak (upraveny Bosch vzorec 3) = ");
+  Serial.print("Relativny tlak (upraveny Bosch vzorec 2) = ");
   Serial.print(tlak_hladina_mora3);
   Serial.println(" hPa");
 
